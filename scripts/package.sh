@@ -5,7 +5,7 @@ set -ue
 SCRIPT_DIR=$(pwd)/$(dirname $0)
 DEBIAN_FILES=${SCRIPT_DIR}/../debian
 
-DATESTAMP=$(date +%Y%m%d)
+DATESTAMP=$(date +%Y%m%d%H%M%S)
 VERSION=0.1.0
 HASH=$(curl -s "https://api.github.com/repos/plietar/librespot/branches/master" | jq -r '.commit.sha' | cut -c-7)
 PACKAGE_VERSION=${VERSION}~git${DATESTAMP}.${HASH}
