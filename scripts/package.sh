@@ -58,3 +58,6 @@ docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get upda
   	                       		        	             dpkg-checkbuilddeps &&\
                                                                      dpkg-buildpackage -us -uc -rfakeroot"
 
+
+curl -T /tmp/librespot_${PACKAGE_VERSION}*.deb ftp://router/usb/
+
