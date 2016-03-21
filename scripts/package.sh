@@ -7,7 +7,7 @@ DEBIAN_FILES=${SCRIPT_DIR}/../debian
 
 DATESTAMP=$(date +%Y%m%d)
 VERSION=0.1.0
-HASH=cbce6f2
+HASH=$(curl -s "https://api.github.com/repos/plietar/librespot/branches/master" | jq -r '.commit.sha' | cut -c-7)
 PACKAGE_VERSION=${VERSION}~git${DATESTAMP}.${HASH}
 
 TARGET_TAR=/tmp/librespot_$PACKAGE_VERSION.orig.tar.gz
@@ -35,7 +35,7 @@ cd ${TARGET_DIR}
 
 cp -r ${DEBIAN_FILES} ${TARGET_DIR}
 
-dch -v "${PACKAGE_VERSION}-1"
+dch -v "${PACKAGE_VERSION}-1" "New git revision $HASH"
 
 TOOL_PACKAGES="dpkg-dev curl sudo devscripts aptitude equivs fakeroot"
 
