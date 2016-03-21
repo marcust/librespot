@@ -54,7 +54,7 @@ docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get upda
                                                                      apt-get -y upgrade &&\
                                                                      apt-get install -y ${TOOL_PACKAGES} &&\
                                                                      $EXTRA_CMD  &&\
-                                                                     mk-build-deps -i -t \"apt-get -y \" &&\
+                                                                     mk-build-deps -r -i -t \"apt-get -y \" &&\
   	                       		        	             dpkg-checkbuilddeps &&\
                                                                      dpkg-buildpackage -us -uc -rfakeroot"
 
