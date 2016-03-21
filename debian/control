@@ -8,7 +8,7 @@ Homepage: https://github.com/plietar/librespot
 Vcs-Git: https://github.com/plietar/librespot.git
 
 Package: librespot
-Architecture: amd64 x86 armhf
+Architecture: amd64 i386 armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: librespot is an open source client library for Spotify
  It enables applications to use Spotify's service, without using the official but closed-source libspotify. Additionally, it will provide extra features which are not available in the official library.

@@ -45,8 +45,12 @@ EXTRA_CMD="/bin/true"
 if [ ${ARCH} = "armhf" ]; then
     BASE_IMAGE="marcust/jessie-armhf-rust:stable"
 fi
-if [ ${ARCH} = "amd64" -o ${ARCH} = "i386" ]; then
+if [ ${ARCH} = "amd64" ]; then
     BASE_IMAGE="ubuntu:15.10"
+    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
+fi
+if [ ${ARCH} = "i386" ]; then
+    BASE_IMAGE="ioft/i386-ubuntu:15.10"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 
