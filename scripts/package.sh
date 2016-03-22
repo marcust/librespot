@@ -2,7 +2,7 @@
 
 set -ue
 
-SCRIPT_DIR=$(pwd)/$(dirname $0)
+SCRIPT_DIR=$(dirname $0)
 DEBIAN_FILES=${SCRIPT_DIR}/../debian
 
 DATESTAMP=$(date +%Y%m%d%H%M%S)
