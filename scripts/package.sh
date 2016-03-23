@@ -69,9 +69,9 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
 	DIST_NAME=$(echo $BASE_IMAGE | cut -d'-' -f 1 | cut -d'/' -f 1)
     fi
     
-    dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
 
-    rm -f /tmp/librespot*.deb
+    dropbox_uploader.sh mkdir /Public/librespot/${DIST_NAME}/${ARCH}/
+    dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
 
 done;
 
