@@ -37,7 +37,7 @@ cp -r ${DEBIAN_FILES} ${TARGET_DIR}
 
 dch -v "${PACKAGE_VERSION}-1" "New git revision $HASH"
 
-TOOL_PACKAGES="dpkg-dev curl sudo devscripts aptitude equivs fakeroot lsb-release"
+TOOL_PACKAGES="dpkg-dev curl sudo devscripts aptitude equivs fakeroot gcc file ca-certificates"
 
 ARCH=$(dpkg --print-architecture)
 
