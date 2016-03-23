@@ -50,7 +50,7 @@ if [ ${ARCH} = "amd64" ]; then
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 if [ ${ARCH} = "i386" ]; then
-    BASE_IMAGES="ioft/i386-ubuntu:15.10"
+    BASE_IMAGES="ioft/i386-ubuntu:trusty ioft/i386-ubuntu:wily resin/i386-debian:jessie resin/i386-debian:wheezy"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 
@@ -67,6 +67,8 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
     DIST_NAME=$(docker run $BASE_IMAGE /usr/bin/lsb_release -s -c)
 
     dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
+
+    rm -f /tmp/librespot*.deb
 
 done;
 
