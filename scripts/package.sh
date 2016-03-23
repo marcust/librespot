@@ -66,7 +66,7 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
 
     DIST_NAME=$(echo $BASE_IMAGE | cut -d':' -f 2)
     if [ ${DIST_NAME} = "stable" ]; then
-	DIST_NAME=$(echo $BASE_IMAGE | cut -d'-' -f 1 | cut -d'/' -f 1)
+	DIST_NAME=$(echo $BASE_IMAGE | cut -d'-' -f 1 | cut -d'/' -f 2)
     fi
     
 
