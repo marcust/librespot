@@ -56,15 +56,14 @@ fi
 
 for BASE_IMAGE in ${BASE_IMAGES}; do
 
-    docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get update &&\
+    DIST_NAME=$(docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get update &&\
                                                                      apt-get -y upgrade &&\
                                                                      apt-get install -y ${TOOL_PACKAGES} &&\
                                                                      $EXTRA_CMD  &&\
                                                                      mk-build-deps -r -i -t \"apt-get -y \" &&\
   	                       		        	             dpkg-checkbuilddeps &&\
-                                                                     dpkg-buildpackage -us -uc -rfakeroot"
-
-    DIST_NAME=$(docker run $BASE_IMAGE /usr/bin/lsb_release -s -c)
+                                                                     dpkg-buildpackage -us -uc -rfakeroot &&\
+                                                                     /usr/bin/lsb_release -s -c")
 
     dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
 
