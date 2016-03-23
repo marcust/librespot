@@ -43,18 +43,20 @@ ARCH=$(dpkg --print-architecture)
 
 EXTRA_CMD="/bin/true"
 if [ ${ARCH} = "armhf" ]; then
-    BASE_IMAGE="marcust/jessie-armhf-rust:stable"
+    BASE_IMAGES="marcust/jessie-armhf-rust:stable"
 fi
 if [ ${ARCH} = "amd64" ]; then
-    BASE_IMAGE="ubuntu:15.10"
+    BASE_IMAGES="ubuntu:15.10"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 if [ ${ARCH} = "i386" ]; then
-    BASE_IMAGE="ioft/i386-ubuntu:15.10"
+    BASE_IMAGES="ioft/i386-ubuntu:15.10"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 
-docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get update &&\
+for BASE_IMAGE in ${BASE_IMAGES}; do
+
+    docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get update &&\
                                                                      apt-get -y upgrade &&\
                                                                      apt-get install -y ${TOOL_PACKAGES} &&\
                                                                      $EXTRA_CMD  &&\
@@ -62,7 +64,9 @@ docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get upda
   	                       		        	             dpkg-checkbuilddeps &&\
                                                                      dpkg-buildpackage -us -uc -rfakeroot"
 
-DIST_NAME=$(docker run $BASE_IMAGE /bin/lsb_release -s -c)
+    DIST_NAME=$(docker run $BASE_IMAGE /bin/lsb_release -s -c)
 
-dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
+    dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
+
+done;
 
