@@ -70,8 +70,8 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
     fi
     
 
-    dropbox_uploader.sh mkdir /Public/librespot/${DIST_NAME}/${ARCH}/
-    dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
+    FILENAME=$(basename $(ls /tmp/librespot_${PACKAGE_VERSION}*.deb))
+    dropbox_uploader.sh upload /tmp/${FILENAME} /Public/librespot/${DIST_NAME}/${ARCH}/${FILENAME}
 
 done;
 
