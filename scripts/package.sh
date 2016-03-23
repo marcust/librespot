@@ -62,6 +62,7 @@ docker run  -v /tmp:/tmp -w ${TARGET_DIR} $BASE_IMAGE /bin/bash -c "apt-get upda
   	                       		        	             dpkg-checkbuilddeps &&\
                                                                      dpkg-buildpackage -us -uc -rfakeroot"
 
+DIST_NAME=$(docker run $BASE_IMAGE /bin/lsb_release -s -c)
 
-curl -T /tmp/librespot_${PACKAGE_VERSION}*.deb ftp://router/usb/
+dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
 
