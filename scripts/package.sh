@@ -65,6 +65,9 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
                                                                      dpkg-buildpackage -us -uc -rfakeroot"
 
     DIST_NAME=$(echo $BASE_IMAGE | cut -d':' -f 2)
+    if [ ${DIST_NAME} = "stable" ]; then
+	DIST_NAME=$(echo $BASE_IMAGE | cut -d'-' -f 1 | cut -d'/' -f 1)
+    fi
     
     dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
 
