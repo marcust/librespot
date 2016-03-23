@@ -3,7 +3,7 @@
 set -ue
 
 SCRIPT_DIR=$(dirname $0)
-DEBIAN_FILES=${SCRIPT_DIR}/../debian
+DEBIAN_FILES=$(pwd)/${SCRIPT_DIR}/../debian
 
 DATESTAMP=$(date +%Y%m%d%H%M%S)
 VERSION=0.1.0
@@ -37,7 +37,7 @@ cp -r ${DEBIAN_FILES} ${TARGET_DIR}
 
 dch -v "${PACKAGE_VERSION}-1" "New git revision $HASH"
 
-TOOL_PACKAGES="dpkg-dev curl sudo devscripts aptitude equivs fakeroot"
+TOOL_PACKAGES="dpkg-dev curl sudo devscripts aptitude equivs fakeroot lsb-release"
 
 ARCH=$(dpkg --print-architecture)
 
@@ -46,7 +46,7 @@ if [ ${ARCH} = "armhf" ]; then
     BASE_IMAGES="marcust/jessie-armhf-rust:stable"
 fi
 if [ ${ARCH} = "amd64" ]; then
-    BASE_IMAGES="ubuntu:15.10"
+    BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 if [ ${ARCH} = "i386" ]; then
@@ -64,7 +64,7 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
   	                       		        	             dpkg-checkbuilddeps &&\
                                                                      dpkg-buildpackage -us -uc -rfakeroot"
 
-    DIST_NAME=$(docker run $BASE_IMAGE /bin/lsb_release -s -c)
+    DIST_NAME=$(docker run $BASE_IMAGE /usr/bin/lsb_release -s -c)
 
     dropbox_uploader.sh upload /tmp/librespot_${PACKAGE_VERSION}*.deb /Public/librespot/${DIST_NAME}/${ARCH}/
 
