@@ -43,10 +43,10 @@ ARCH=$(dpkg --print-architecture)
 
 EXTRA_CMD="/bin/true"
 if [ ${ARCH} = "armhf" ]; then
-    BASE_IMAGES="marcust/jessie-armhf-rust:stable"
+    BASE_IMAGES="marcust/jessie-armhf-rust:stable marcust/wily-armhf-rust:stable marcust/trusty-armhf-rust:stable"
 fi
 if [ ${ARCH} = "amd64" ]; then
-    BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial"
+    BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial debian:jessie debian:wheezy"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 if [ ${ARCH} = "i386" ]; then
