@@ -62,7 +62,9 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
                                                                      $EXTRA_CMD  &&\
                                                                      mk-build-deps -r -i -t \"apt-get -y \" &&\
   	                       		        	             dpkg-checkbuilddeps &&\
-                                                                     dpkg-buildpackage -us -uc -rfakeroot"
+                                                                     dpkg-buildpackage -us -uc -rfakeroot &&\
+                                                                     cargo clean &&\
+                                                                     rm -rf target"
 
     DIST_NAME=$(echo $BASE_IMAGE | cut -d':' -f 2)
     if [ ${DIST_NAME} = "stable" ]; then
