@@ -17,12 +17,22 @@ fn usage(program: &str, opts: &getopts::Options) -> String {
     format!("{}", opts.usage(&brief))
 }
 
+#[cfg(not(feature = "syslog-output"))]
+static LOG_INIT: fn() -> Result<(),log::SetLoggerError> = env_logger::init;
+
+#[cfg(feature = "syslog-output")]
+use librespot::syslog_output;
+
+#[cfg(feature = "syslog-output")]
+static LOG_INIT:  fn() -> Result<(),log::SetLoggerError> = syslog_output::init;
+
+
 fn main() {
     if env::var("RUST_LOG").is_err() {
         env::set_var("RUST_LOG", "mdns=info,librespot=trace")
     }
-    env_logger::init().unwrap();
-
+    LOG_INIT().unwrap();
+    
     let mut opts = getopts::Options::new();
     main_helper::add_session_arguments(&mut opts);
     main_helper::add_authentication_arguments(&mut opts);

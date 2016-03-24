@@ -53,6 +53,9 @@ extern crate libc;
 #[cfg(feature = "libpulse-sys")]
 extern crate libpulse_sys;
 
+#[cfg(feature = "syslog-output")]
+extern crate syslog;
+
 pub mod album_cover;
 pub mod audio_backend;
 pub mod audio_decrypt;
@@ -70,6 +73,8 @@ pub mod spotilocal;
 pub mod stream;
 pub mod util;
 pub mod version;
+#[cfg(feature = "syslog-output")]
+pub mod syslog_output;
 
 #[cfg(feature = "with-syntex")] include!(concat!(env!("OUT_DIR"), "/lib.rs"));
 #[cfg(not(feature = "with-syntex"))] include!("lib.in.rs");
