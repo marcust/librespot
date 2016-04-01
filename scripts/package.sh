@@ -73,7 +73,7 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
     
 
     FILENAME=$(basename $(ls /tmp/librespot_${PACKAGE_VERSION}*.deb))
-    dropbox_uploader.sh upload /tmp/${FILENAME} /Public/librespot/${DIST_NAME}/${ARCH}/${FILENAME}
+    /home/marcus/bin/dropbox_uploader.sh upload /tmp/${FILENAME} /Public/librespot/${DIST_NAME}/${ARCH}/${FILENAME}
 
 done;
 
