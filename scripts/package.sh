@@ -7,7 +7,7 @@ DEBIAN_FILES=$(pwd)/${SCRIPT_DIR}/../debian
 
 DATESTAMP=$(date +%Y%m%d%H%M%S)
 VERSION=0.1.0
-HASH=$(curl -s "https://api.github.com/repos/plietar/librespot/branches/master" | jq -r '.commit.sha' | cut -c-7)
+HASH=$(curl -s "https://api.github.com/repos/marcust/librespot/branches/logging" | jq -r '.commit.sha' | cut -c-7)
 PACKAGE_VERSION=${VERSION}~git${DATESTAMP}.${HASH}
 
 TARGET_TAR=/tmp/librespot_$PACKAGE_VERSION.orig.tar.gz
