@@ -47,11 +47,11 @@ if [ ${ARCH} = "armhf" ]; then
 fi
 if [ ${ARCH} = "amd64" ]; then
     BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial debian:jessie debian:wheezy"
-    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly"
+    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 if [ ${ARCH} = "i386" ]; then
     BASE_IMAGES="ioft/i386-ubuntu:trusty ioft/i386-ubuntu:wily resin/i386-debian:jessie resin/i386-debian:wheezy"
-    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=nightly"
+    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
 fi
 
 for BASE_IMAGE in ${BASE_IMAGES}; do
