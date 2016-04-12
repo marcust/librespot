@@ -31,6 +31,7 @@ script:
     - cargo build --no-default-features --features "with-syntex pulseaudio-backend"
     - cargo build --no-default-features --features "with-syntex alsa-backend"
     - cargo build --no-default-features --features "with-syntex" --target armv7-unknown-linux-gnueabihf
+    - cargo build --no-default-features --features "with-syntex syslog-output"
 
     # Building without syntex only works on nightly
     - if [[ $TRAVIS_RUST_VERSION == *"nightly"* ]]; then
