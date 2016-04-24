@@ -43,15 +43,15 @@ ARCH=$(dpkg --print-architecture)
 
 EXTRA_CMD="/bin/true"
 if [ ${ARCH} = "armhf" ]; then
-    BASE_IMAGES="marcust/jessie-armhf-rust:nightly marcust/wily-armhf-rust:nightly marcust/trusty-armhf-rust:nightly"
+    BASE_IMAGES="marcust/jessie-armhf-rust:1.7.0 marcust/wily-armhf-rust:1.7.0 marcust/trusty-armhf-rust:1.7.0"
 fi
 if [ ${ARCH} = "amd64" ]; then
     BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial debian:jessie debian:wheezy"
-    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
+    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=stable"
 fi
 if [ ${ARCH} = "i386" ]; then
     BASE_IMAGES="ioft/i386-ubuntu:trusty ioft/i386-ubuntu:wily resin/i386-debian:jessie resin/i386-debian:wheezy"
-    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh"
+    EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=stable"
 fi
 
 for BASE_IMAGE in ${BASE_IMAGES}; do
@@ -67,7 +67,7 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
                                                                      rm -rf target"
 
     DIST_NAME=$(echo $BASE_IMAGE | cut -d':' -f 2)
-    if [ ${DIST_NAME} = "nightly" ]; then
+    if [ ${DIST_NAME} = "1.7.0" ]; then
 	DIST_NAME=$(echo $BASE_IMAGE | cut -d'-' -f 1 | cut -d'/' -f 2)
     fi
     
