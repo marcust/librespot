@@ -43,7 +43,7 @@ ARCH=$(dpkg --print-architecture)
 
 EXTRA_CMD="/bin/true"
 if [ ${ARCH} = "armhf" ]; then
-    BASE_IMAGES="marcust/jessie-armhf-rust:nightly marcust/wily-armhf-rust:nightly marcust/trusty-armhf-rust:nightly"
+    BASE_IMAGES="marcust/jessie-armhf-rust:nightly marcust/wily-armhf-rust:nightly marcust/trusty-armhf-rust:nightly marcust/xenial-armhf-rust:nightly"
 fi
 if [ ${ARCH} = "amd64" ]; then
     BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial debian:jessie debian:wheezy"
