@@ -50,7 +50,7 @@ if [ ${ARCH} = "amd64" ]; then
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=stable"
 fi
 if [ ${ARCH} = "i386" ]; then
-    BASE_IMAGES="ioft/i386-ubuntu:trusty ioft/i386-ubuntu:wily resin/i386-debian:jessie resin/i386-debian:wheezy"
+    BASE_IMAGES="ioft/i386-ubuntu:trusty ioft/i386-ubuntu:xenial ioft/i386-ubuntu:wily resin/i386-debian:jessie resin/i386-debian:wheezy"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=stable"
 fi
 
