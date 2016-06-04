@@ -15,6 +15,11 @@ fn init_pa_simple() -> *mut pa_simple {
         channels: 2, // stereo
         rate: 44100
     };
+
+    let mut channel_map = pa_channel_map {
+        channels: 2,
+        map: [PA_CHANNEL_POSITION_INVALID; 32usize]
+    };
     
     let attr = pa_buffer_attr {
         maxlength: !0 as c_uint,
@@ -31,14 +36,14 @@ fn init_pa_simple() -> *mut pa_simple {
     let s = unsafe {
         let error = &mut error_value;
             pa_simple_new(null(),           // Use the default server.
-                      name.as_ptr(),        // Our application's name.
+                      name.as_ptr(),        
                       PA_STREAM_PLAYBACK,
                       null(),               // Use the default device.
                       description.as_ptr(), // Description of our stream.
-                      &ss,                  // Our sample format.
-                      null(),               // Use default channel map
+                      &ss,                  
+                      pa_channel_map_init_stereo(&mut channel_map),        
                       &attr,                // Buffering attributes
-                      error                 // Ignore error code.
+                      error                 
         )
     };
     if s == null_mut() {
