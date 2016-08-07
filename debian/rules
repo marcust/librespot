@@ -23,7 +23,7 @@ export CARGO_INSTALL_ROOT=/usr
 	dh $@ 
 
 override_dh_auto_install:
-	cargo install --path . --no-default-features --features "portaudio-backend pulseaudio-backend with-syntex discovery tremor syslog-output"
+	cargo install --path . --no-default-features --features "portaudio-backend pulseaudio-backend with-syntex with-tremor syslog-output"
 	mkdir -p debian/librespot/usr/bin
 	mv /usr/bin/librespot debian/librespot/usr/bin
 
