@@ -16,7 +16,7 @@ include /usr/share/dpkg/default.mk
 # package maintainers to append LDFLAGS
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
-export CARGO_INSTALL_ROOT=/usr
+export CARGO_INSTALL_ROOT=$(CURDIR)
 
 # main packaging script based on dh7 syntax
 %:
@@ -25,7 +25,7 @@ export CARGO_INSTALL_ROOT=/usr
 override_dh_auto_install:
 	cargo install --path . --no-default-features --features "portaudio-backend pulseaudio-backend with-syntex with-tremor syslog-output"
 	mkdir -p debian/librespot/usr/bin
-	mv /usr/bin/librespot debian/librespot/usr/bin
+	mv $(CURDIR)/bin/librespot debian/librespot/usr/bin
 
 
 
