@@ -64,7 +64,7 @@ for BASE_IMAGE in ${BASE_IMAGES}; do
   	                       		        	             dpkg-checkbuilddeps &&\
                                                                      dpkg-buildpackage -us -uc -rfakeroot &&\
                                                                      cargo clean &&\
-                                                                     rm -rf target"
+                                                                     rm -rf target .crates.toml"
 
     DIST_NAME=$(echo $BASE_IMAGE | cut -d':' -f 2)
     if [ ${DIST_NAME} = "stable" ]; then
