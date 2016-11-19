@@ -2,6 +2,8 @@
 
 set -ue
 
+export PATH=$PATH:/usr/local/bin
+
 SCRIPT_DIR=$(dirname $0)
 DEBIAN_FILES=$(pwd)/${SCRIPT_DIR}/../debian
 
