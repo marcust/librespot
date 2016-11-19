@@ -42,6 +42,9 @@ TOOL_PACKAGES="dpkg-dev curl sudo devscripts aptitude equivs fakeroot gcc file c
 ARCH=$(dpkg --print-architecture)
 
 EXTRA_CMD="/bin/true"
+if [ ${ARCH} = "arm64" ]; then
+    BASE_IMAGES="marcust/jessie-arm64-rust:stable marcust/xenial-arm64-rust:stable"
+fi
 if [ ${ARCH} = "armhf" ]; then
     BASE_IMAGES="marcust/jessie-armhf-rust:stable marcust/wily-armhf-rust:stable marcust/trusty-armhf-rust:stable marcust/xenial-armhf-rust:stable"
 fi
