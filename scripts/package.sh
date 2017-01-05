@@ -49,7 +49,7 @@ if [ ${ARCH} = "armhf" ]; then
     BASE_IMAGES="marcust/jessie-armhf-rust:stable marcust/wily-armhf-rust:stable marcust/trusty-armhf-rust:stable marcust/xenial-armhf-rust:stable"
 fi
 if [ ${ARCH} = "amd64" ]; then
-    BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial debian:jessie debian:wheezy"
+    BASE_IMAGES="ubuntu:wily ubuntu:trusty ubuntu:xenial ubuntu:yakkety debian:jessie debian:wheezy"
     EXTRA_CMD="curl -sSf https://static.rust-lang.org/rustup.sh | sh -s -- --channel=stable"
 fi
 if [ ${ARCH} = "i386" ]; then
